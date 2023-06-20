@@ -1,9 +1,11 @@
 package com.example.fitnesstracker
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 
 class ImcActivity : AppCompatActivity() {
@@ -17,22 +19,34 @@ class ImcActivity : AppCompatActivity() {
         heightEditInput = findViewById(R.id.inputEdit_height)
 
         val buttonImcCalculator: Button = findViewById(R.id.button_sendImcCalculator)
-        buttonImcCalculator.setOnClickListener {
+        buttonImcCalculator.setOnClickListener() {
             if (!validate()) {
                 Toast.makeText(this, R.string.toastDefeatValue, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val weight = weightEditInput.toString().toInt()
-            val height = heightEditInput.toString().toInt()
-            val resultOfCalculateimc = calculateImc(weight, height)
+            val weight = weightEditInput.text.toString().toInt()
+            val height = heightEditInput.text.toString().toInt()
 
-            val imcId = responseForImcCalculate(resultOfCalculateimc)
-            Toast.makeText(this, imcId, Toast.LENGTH_SHORT).show()
+            val result = calculateImc(weight, height)
+            Log.d("Teste", "Resultado: $result")
+
+            val imcResultId = imcResponse(result)
+            Toast.makeText(this, imcResultId, Toast.LENGTH_SHORT).show()
         }
     }
-    private fun responseForImcCalculate(imc: Double): Int {
-        return if (imc <= 15.0) R.string.imc_severely_low_weight
-        else R.string.normal
+
+    @StringRes
+    private fun imcResponse(imc: Double): Int {
+        return when {
+            imc < 15.0 -> R.string.imc_severely_low_weight
+            imc < 16.0 -> R.string.imc_very_low_weight
+            imc < 18.5 -> R.string.imc_low_weight
+            imc < 25.0 -> R.string.normal
+            imc < 30.0 -> R.string.imc_high_weight
+            imc < 35.0 -> R.string.imc_so_high_weight
+            imc < 40.0 -> R.string.imc_severely_high_weight
+            else -> R.string.imc_extreme_weight
+        }
     }
 
     private fun calculateImc(weight: Int, height: Int): Double {

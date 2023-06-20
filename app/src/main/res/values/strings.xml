@@ -5,7 +5,7 @@
     <string name="height">Altura (cm)</string>
     <string name="buttonText_calculate">Calcular</string>
 
-<!--    'R.' reeferences-->
+<!--    'R.' references-->
     <string name="toastDefeatValue">Informe um valor maior que 0</string>
 
     <string name="imc_severely_low_weight">Severamente abaixo do peso</string>
