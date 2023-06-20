@@ -4,4 +4,7 @@
     <string name="weight">Peso (Kg)</string>
     <string name="height">Altura (cm)</string>
     <string name="buttonText_calculate">Calcular</string>
+
+<!--    'R.' reeferences-->
+    <string name="toastDefeatValue">Informe um valor maior que 0</string>
 </resources>

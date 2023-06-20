@@ -3,6 +3,7 @@ package com.example.fitnesstracker
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class ImcActivity : AppCompatActivity() {
@@ -17,17 +18,16 @@ class ImcActivity : AppCompatActivity() {
 
         val buttonImcCalculator: Button = findViewById(R.id.button_sendImcCalculator)
         buttonImcCalculator.setOnClickListener {
-            validate()
+            if (!validate()) {
+                Toast.makeText(this, R.string.toastDefeatValue, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
         }
     }
     private fun validate(): Boolean {
-        if(weightEditInput.text.toString().isNotEmpty()
+        return (weightEditInput.text.toString().isNotEmpty()
             && heightEditInput.text.toString().isNotEmpty()
             && !weightEditInput.text.toString().startsWith("0")
-            && !heightEditInput.text.toString().startsWith("0")) {
-            return true
-        } else {
-            return false
-        }
+            && !heightEditInput.text.toString().startsWith("0"))
     }
 }
