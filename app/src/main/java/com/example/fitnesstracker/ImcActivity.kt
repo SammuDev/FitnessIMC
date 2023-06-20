@@ -21,6 +21,13 @@ class ImcActivity : AppCompatActivity() {
         }
     }
     private fun validate(): Boolean {
-        if()
+        if(weightEditInput.text.toString().isNotEmpty()
+            && heightEditInput.text.toString().isNotEmpty()
+            && !weightEditInput.text.toString().startsWith("0")
+            && !heightEditInput.text.toString().startsWith("0")) {
+            return true
+        } else {
+            return false
+        }
     }
 }
