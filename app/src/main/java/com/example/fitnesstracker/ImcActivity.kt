@@ -22,12 +22,27 @@ class ImcActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.toastDefeatValue, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            val weight = weightEditInput.toString().toInt()
+            val height = heightEditInput.toString().toInt()
+            val resultOfCalculateimc = calculateImc(weight, height)
+
+            val imcId = responseForImcCalculate(resultOfCalculateimc)
+            Toast.makeText(this, imcId, Toast.LENGTH_SHORT).show()
         }
     }
+    private fun responseForImcCalculate(imc: Double): Int {
+        return if (imc <= 15.0) R.string.imc_severely_low_weight
+        else R.string.normal
+    }
+
+    private fun calculateImc(weight: Int, height: Int): Double {
+        return weight / ((height / 100.0) * (height / 100.0))
+    }
+
     private fun validate(): Boolean {
         return (weightEditInput.text.toString().isNotEmpty()
-            && heightEditInput.text.toString().isNotEmpty()
-            && !weightEditInput.text.toString().startsWith("0")
-            && !heightEditInput.text.toString().startsWith("0"))
+                && heightEditInput.text.toString().isNotEmpty()
+                && !weightEditInput.text.toString().startsWith("0")
+                && !heightEditInput.text.toString().startsWith("0"))
     }
 }
