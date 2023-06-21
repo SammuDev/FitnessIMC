@@ -32,15 +32,12 @@ class ImcActivity : AppCompatActivity() {
 
             val imcStringResult = imcResponse(result)
 
-            val dialog = AlertDialog.Builder(this)
-
-            dialog.setTitle(getString(R.string.imc_response, result))
-            dialog.setMessage(imcStringResult)
-            dialog.setPositiveButton(android.R.string.ok, object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {}
-            })
-            val dialogCreate = dialog.create()
-            dialogCreate.show()
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.imc_response, result))
+                .setMessage(imcStringResult)
+                .setPositiveButton(android.R.string.ok) { dialog, which -> }
+                .create()
+                .show()
         }
     }
 
