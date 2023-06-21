@@ -2,7 +2,6 @@ package com.example.fitnesstracker
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -37,10 +36,8 @@ class ImcActivity : AppCompatActivity() {
 
             dialog.setTitle(getString(R.string.imc_response, result))
             dialog.setMessage(imcStringResult)
-            dialog.setPositiveButton("Click", object: DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-
-                }
+            dialog.setPositiveButton(android.R.string.ok, object : DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {}
             })
             val dialogCreate = dialog.create()
             dialogCreate.show()
