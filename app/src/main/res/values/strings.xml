@@ -16,4 +16,6 @@
     <string name="imc_so_high_weight">Informe um valor maior que 0</string>
     <string name="imc_severely_high_weight">Informe um valor maior que 0</string>
     <string name="imc_extreme_weight">Informe um valor maior que 0</string>
+
+    <string name="imc_response">Seu IMC é: %1$.2f</string>
 </resources>

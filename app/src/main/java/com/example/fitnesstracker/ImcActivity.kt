@@ -1,11 +1,13 @@
 package com.example.fitnesstracker
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class ImcActivity : AppCompatActivity() {
@@ -19,7 +21,7 @@ class ImcActivity : AppCompatActivity() {
         heightEditInput = findViewById(R.id.inputEdit_height)
 
         val buttonImcCalculator: Button = findViewById(R.id.button_sendImcCalculator)
-        buttonImcCalculator.setOnClickListener() {
+        buttonImcCalculator.setOnClickListener {
             if (!validate()) {
                 Toast.makeText(this, R.string.toastDefeatValue, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -28,10 +30,20 @@ class ImcActivity : AppCompatActivity() {
             val height = heightEditInput.text.toString().toInt()
 
             val result = calculateImc(weight, height)
-            Log.d("Teste", "Resultado: $result")
 
-            val imcResultId = imcResponse(result)
-            Toast.makeText(this, imcResultId, Toast.LENGTH_SHORT).show()
+            val imcStringResult = imcResponse(result)
+
+            val dialog = AlertDialog.Builder(this)
+
+            dialog.setTitle(getString(R.string.imc_response, result))
+            dialog.setMessage(imcStringResult)
+            dialog.setPositiveButton("Click", object: DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+
+                }
+            })
+            val dialogCreate = dialog.create()
+            dialogCreate.show()
         }
     }
 
