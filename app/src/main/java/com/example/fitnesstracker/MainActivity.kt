@@ -49,10 +49,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val itemTextView: TextView = view.findViewById(R.id.textView_item)
+        private val buttonItem: TextView = view.findViewById(R.id.button_item)
 
         fun bind(item: String) {
-            itemTextView.text = item
+            buttonItem.text = item
         }
     }
 }
