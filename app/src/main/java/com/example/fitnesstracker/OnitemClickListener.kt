@@ -1,5 +1,5 @@
 package com.example.fitnesstracker
 
-interface OnitemClickListener {
+interface ItemOnClickInterface {
     fun onClick()
 }
