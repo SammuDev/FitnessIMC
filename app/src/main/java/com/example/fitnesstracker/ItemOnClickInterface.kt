@@ -1,5 +1,5 @@
 package com.example.fitnesstracker
 
 interface ItemOnClickInterface {
-    fun onClick()
+    fun onClick(id: Int)
 }

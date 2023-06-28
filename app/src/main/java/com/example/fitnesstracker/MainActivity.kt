@@ -1,7 +1,9 @@
 package com.example.fitnesstracker
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,8 +45,16 @@ class MainActivity : AppCompatActivity(), ItemOnClickInterface {
         recyclerView.layoutManager = GridLayoutManager(this, 2)
     }
 
-    override fun onClick() {
-        TODO("Not yet implemented")
+    override fun onClick(id: Int) {
+        when (id) {
+            1 -> {
+                val intent = Intent(this, ImcActivity::class.java)
+                startActivity(intent)
+            }
+            2 -> {
+                Log.i("TestOfClickLayout", "BOTÃO 2 FUNCIONANDO!!!")
+            }
+        }
     }
 
     private inner class MyAdapter(
@@ -78,7 +88,7 @@ class MainActivity : AppCompatActivity(), ItemOnClickInterface {
                 containerItem.setBackgroundColor(item.color)
 
                 containerItem.setOnClickListener {
-                    itemOnClickInterface.onClick()
+                    itemOnClickInterface.onClick(item.id)
                 }
             }
         }
