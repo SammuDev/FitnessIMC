@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), ItemOnClickInterface {
                 startActivity(intent)
             }
             2 -> {
-                Log.i("TestOfClickLayout", "BOTÃO 2 FUNCIONANDO!!!")
+                Log.i("TestOfClickLayout", "BOTÃO 2 FUNCIONANDO!")
             }
         }
     }
