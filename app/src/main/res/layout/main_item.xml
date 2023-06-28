@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginBottom="10dp"
-    android:background="#ff00"
-    android:gravity="center"
-    android:padding="5dp">
+    android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/button_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#D1D1D1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintDimensionRatio="1.1"
+        app:layout_constraintTop_toTopOf="parent">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_wb_sunny_24" />
+
+        <TextView
+            android:id="@+id/item_text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_imc" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

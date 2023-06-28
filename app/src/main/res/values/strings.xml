@@ -4,6 +4,7 @@
     <string name="weight">Peso (Kg)</string>
     <string name="height">Altura (cm)</string>
     <string name="buttonText_calculate">Calcular</string>
+    <string name="label_imc">IMC</string>
 
 <!--    'R.' references-->
     <string name="toastDefeatValue">Informe um valor maior que 0</string>
@@ -18,4 +19,8 @@
     <string name="imc_extreme_weight">Extremamente obeso</string>
 
     <string name="imc_response">Seu IMC é: %1$.2f</string>
+
+<!--    dinamic Button Text-->
+    <string name="button1">IMC</string>
+    <string name="button2">TMB</string>
 </resources>

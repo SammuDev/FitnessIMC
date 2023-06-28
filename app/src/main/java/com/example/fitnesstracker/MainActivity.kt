@@ -1,19 +1,19 @@
 package com.example.fitnesstracker
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    lateinit var buttonImc: LinearLayout
+    //    lateinit var buttonImc: LinearLayout
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,23 +31,23 @@ class MainActivity : AppCompatActivity() {
         )
         mainItemsList.add(
             MainItem(
-                id = 1,
-                drawableId = R.drawable.baseline_wb_sunny_24,
+                id = 2,
+                drawableId = R.drawable.baseline_whatshot_24,
                 textStringId = R.string.button2,
-                color = Color.CYAN
+                color = Color.GRAY
             )
         )
 
         val myAdapter = MyAdapter(mainItemsList)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.adapter = myAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
 
-        buttonImc = findViewById(R.id.button_imc)
-        buttonImc.setOnClickListener() {
-            val intent = Intent(this, ImcActivity::class.java)
-            startActivity(intent)
-        }
+//        buttonImc = findViewById(R.id.button_imc)
+//        buttonImc.setOnClickListener() {
+//            val intent = Intent(this, ImcActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 
@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-//            val item = "Item ${position + 1}"
             val item = itemsList[position]
             holder.bind(item)
         }
@@ -72,8 +71,13 @@ class MainActivity : AppCompatActivity() {
 
     private inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: MainItem) {
-            val buttonItem: Button = itemView.findViewById(R.id.button_item)
-            buttonItem.setText(item.textStringId)
+            val imageItem: ImageView = itemView.findViewById(R.id.item_image)
+            val nameItem: TextView = itemView.findViewById(R.id.item_text_name)
+            val containerItem: LinearLayout = itemView.findViewById(R.id.item_container)
+
+            imageItem.setImageResource(item.drawableId)
+            nameItem.setText(item.textStringId)
+            containerItem.setBackgroundColor(item.color)
         }
     }
 }
