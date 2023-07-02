@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity(), ItemOnClickInterface {
+class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,27 +39,26 @@ class MainActivity : AppCompatActivity(), ItemOnClickInterface {
             )
         )
 
-        val myAdapter = MyAdapter(mainItemsList, this)
+        val myAdapter = MyAdapter(mainItemsList) { id ->
+            when (id) {
+                1 -> {
+                    val intent = Intent(this@MainActivity, ImcActivity::class.java)
+                    startActivity(intent)
+                }
+                2 -> {
+                    Log.i("TestOfClickLayout", "BOTÃO 2 FUNCIONANDO!")
+                }
+            }
+        }
+
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.adapter = myAdapter
         recyclerView.layoutManager = GridLayoutManager(this, 2)
     }
 
-    override fun onClick(id: Int) {
-        when (id) {
-            1 -> {
-                val intent = Intent(this, ImcActivity::class.java)
-                startActivity(intent)
-            }
-            2 -> {
-                Log.i("TestOfClickLayout", "BOTÃO 2 FUNCIONANDO!")
-            }
-        }
-    }
-
     private inner class MyAdapter(
         private val itemsList: List<MainItem>,
-        private val itemOnClickInterface: ItemOnClickInterface
+        private val itemOnClickInterface: (Int) -> Unit
     ) :
         RecyclerView.Adapter<MyAdapter.MainViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -88,7 +87,7 @@ class MainActivity : AppCompatActivity(), ItemOnClickInterface {
                 containerItem.setBackgroundColor(item.color)
 
                 containerItem.setOnClickListener {
-                    itemOnClickInterface.onClick(item.id)
+                    itemOnClickInterface.invoke(item.id)
                 }
             }
         }
