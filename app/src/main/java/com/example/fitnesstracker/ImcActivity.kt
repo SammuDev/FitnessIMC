@@ -38,6 +38,7 @@ class ImcActivity : AppCompatActivity() {
                 .setTitle(getString(R.string.imc_response, result))
                 .setMessage(imcStringResult)
                 .setPositiveButton(android.R.string.ok) { dialog, which -> }
+                .setNegativeButton(android.R.string.ok) { dialog, which -> }
                 .create()
                 .show()
 
