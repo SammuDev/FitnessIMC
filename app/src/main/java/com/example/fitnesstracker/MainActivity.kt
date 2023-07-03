@@ -46,14 +46,15 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 2 -> {
-                    Log.i("TestOfClickLayout", "BOTÃO 2 FUNCIONANDO!")
+                    val intent = Intent(this@MainActivity, ListCalculateActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.adapter = myAdapter
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        recyclerView.layoutManager = GridLayoutManager(this@MainActivity, 2)
     }
 
     private inner class MyAdapter(
