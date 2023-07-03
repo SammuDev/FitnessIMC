@@ -1,7 +1,6 @@
 package com.example.fitnesstracker
 
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -10,6 +9,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fitnesstracker.model.Calculate
 
 class ImcActivity : AppCompatActivity() {
     private lateinit var weightEditInput: EditText
@@ -38,7 +38,15 @@ class ImcActivity : AppCompatActivity() {
                 .setTitle(getString(R.string.imc_response, result))
                 .setMessage(imcStringResult)
                 .setPositiveButton(android.R.string.ok) { dialog, which -> }
-                .setNegativeButton(android.R.string.ok) { dialog, which -> }
+                .setNegativeButton(R.string.save) { dialog, which ->
+                    Thread {
+                        val app = application as App
+                        val calculateDao = app.db.calculateDao()
+                        calculateDao.insert(Calculate(type = "imc", res = result))
+
+                        Toast.makeText(this@ImcActivity, R.string.save, Toast.LENGTH_LONG).show()
+                    }.start()
+                }
                 .create()
                 .show()
 
