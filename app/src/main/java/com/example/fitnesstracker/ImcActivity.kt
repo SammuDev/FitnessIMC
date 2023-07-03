@@ -10,6 +10,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fitnesstracker.model.Calculate
+import java.util.Date
 
 class ImcActivity : AppCompatActivity() {
     private lateinit var weightEditInput: EditText
@@ -37,14 +38,17 @@ class ImcActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.imc_response, result))
                 .setMessage(imcStringResult)
-                .setPositiveButton(android.R.string.ok) { dialog, which -> }
-                .setNegativeButton(R.string.save) { dialog, which ->
+                .setPositiveButton(android.R.string.ok) { _, _ -> }
+                .setNegativeButton(R.string.save) { _, _ ->
                     Thread {
                         val app = application as App
                         val calculateDao = app.db.calculateDao()
-                        calculateDao.insert(Calculate(type = "imc", res = result))
+                        val currentDate = Date()
+                        calculateDao.insert(Calculate(type = "imc", res = result, createdDate = currentDate))
 
-                        Toast.makeText(this@ImcActivity, R.string.save, Toast.LENGTH_LONG).show()
+                        runOnUiThread {
+                            Toast.makeText(this@ImcActivity, R.string.saved, Toast.LENGTH_LONG).show()
+                        }
                     }.start()
                 }
                 .create()

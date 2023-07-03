@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">FitnessTracker</string>
-    <string name="save">Salvar</string>
     <string name="imc_description">IMC é a sigla para Índice de Massa Corporal que serve para avaliar o peso         do indivíduo em relação à sua altura e assim indicar se está dentro do peso ideal,         acima ou abaixo do peso desejado.\n\nPreencha os campos de peso e altura para descobrir o seu IMC</string>
     <string name="weight">Peso (Kg)</string>
     <string name="height">Altura (cm)</string>
     <string name="buttonText_calculate">Calcular</string>
     <string name="label_imc">IMC</string>
 
-<!--    'R.' references-->
+    <!--    'R.' references-->
     <string name="toastDefeatValue">Informe um valor maior que 0</string>
+    <string name="save">Salvar</string>
+    <string name="saved">Registro salvo com sucesso ;3</string>
 
     <string name="imc_severely_low_weight">Severamente abaixo do peso</string>
     <string name="imc_very_low_weight">Muito abaixo do peso</string>
@@ -21,7 +22,7 @@
 
     <string name="imc_response">Seu IMC é: %1$.2f</string>
 
-<!--    dinamic Button Text-->
+    <!--    dinamic Button Text-->
     <string name="button1">IMC</string>
     <string name="button2">TMB</string>
 </resources>
