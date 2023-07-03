@@ -2,6 +2,7 @@ package com.example.fitnesstracker
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -40,15 +41,17 @@ class ListCalculateActivity : AppCompatActivity() {
         private val mainList: List<Calculate>
     ) : RecyclerView.Adapter<MyAdapter.MainViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-            TODO("Not yet implemented")
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.calculate_item, parent, false)
+            return MainViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-            TODO("Not yet implemented")
+            TODO("NO SHARES!")
         }
 
         override fun getItemCount(): Int {
-            return 3
+            return mainList.size
         }
 
         private inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
