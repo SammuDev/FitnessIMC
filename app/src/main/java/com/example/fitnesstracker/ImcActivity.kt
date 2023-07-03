@@ -1,6 +1,7 @@
 package com.example.fitnesstracker
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -47,7 +48,9 @@ class ImcActivity : AppCompatActivity() {
                         calculateDao.insert(Calculate(type = "imc", res = result, createdDate = currentDate))
 
                         runOnUiThread {
-                            Toast.makeText(this@ImcActivity, R.string.saved, Toast.LENGTH_LONG).show()
+                            val intent = Intent(this@ImcActivity, ListCalculateActivity::class.java)
+                            intent.putExtra("type", "imc")
+                            startActivity(intent)
                         }
                     }.start()
                 }
