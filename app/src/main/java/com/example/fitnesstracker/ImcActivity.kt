@@ -11,7 +11,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fitnesstracker.model.Calculate
-import java.util.Date
+import java.util.*
 
 class ImcActivity : AppCompatActivity() {
     private lateinit var weightEditInput: EditText
@@ -45,7 +45,13 @@ class ImcActivity : AppCompatActivity() {
                         val app = application as App
                         val calculateDao = app.db.calculateDao()
                         val currentDate = Date()
-                        calculateDao.insert(Calculate(type = "imc", res = result, createdDate = currentDate))
+                        calculateDao.insert(
+                            Calculate(
+                                type = "imc",
+                                res = result,
+                                createdDate = currentDate
+                            )
+                        )
 
                         runOnUiThread {
                             val intent = Intent(this@ImcActivity, ListCalculateActivity::class.java)
