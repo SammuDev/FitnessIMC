@@ -22,11 +22,12 @@ class ListCalculateActivity : AppCompatActivity() {
         val type =
             intent?.extras?.getString("type") ?: throw IllegalStateException("type not found")
 
-        val mainItemsList = mutableListOf<Calculate>()
+        val calculateItemsList = mutableListOf<Calculate>()
+        val myAdapter = MyAdapterList(calculateItemsList)
 
         recyclerView = findViewById(R.id.recyclerViewCalculate)
-        recyclerView.adapter = MyAdapter(mainItemsList)
-        recyclerView.layoutManager = LinearLayoutManager(this@ListCalculateActivity)
+        recyclerView.adapter = myAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         Thread {
             val app = application as App
@@ -34,37 +35,38 @@ class ListCalculateActivity : AppCompatActivity() {
             val response = calculateDao.getRegisterByType(type)
 
             runOnUiThread {
-                mainItemsList.addAll(response)
+                calculateItemsList.addAll(response)
+                myAdapter.notifyDataSetChanged()
             }
         }.start()
     }
 
-    private inner class MyAdapter(
-        private val mainList: List<Calculate>
-    ) : RecyclerView.Adapter<MyAdapter.MainViewHolder>() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+    private inner class MyAdapterList(
+        private val listCalculate: List<Calculate>
+    ) : RecyclerView.Adapter<MyAdapterList.ListViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
             val view =
                 LayoutInflater.from(parent.context)
-                    .inflate(android.R.layout.simple_list_item_1, parent, false)
-            return MainViewHolder(view)
+                    .inflate(R.layout.calculate_item, parent, false)
+            return ListViewHolder(view)
         }
 
-        override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-            val item = mainList[position]
+        override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+            val item = listCalculate[position]
             holder.bind(item)
         }
 
         override fun getItemCount(): Int {
-            return mainList.size
+            return listCalculate.size
         }
 
-        private inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private inner class ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             fun bind(item: Calculate) {
                 val itemListCalculate: TextView = itemView.findViewById(R.id.itemList_calculate)
 
-                val simpleDateformat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR"))
-                val data = simpleDateformat.format(item.createdDate)
                 val result = item.res
+                val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR"))
+                val data = simpleDateFormat.format(item.createdDate)
 
                 itemListCalculate.text = getString(R.string.listCalculate_response, result, data)
             }

@@ -10,5 +10,5 @@ data class Calculate(
     @PrimaryKey(true) val id: Int = 0,
     @ColumnInfo("type") val type: String,
     @ColumnInfo("res") val res: Double,
-    @ColumnInfo("created_date") val createdDate: Date
+    @ColumnInfo("created_date") val createdDate: Date = Date()
 )

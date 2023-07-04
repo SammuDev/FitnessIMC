@@ -44,12 +44,10 @@ class ImcActivity : AppCompatActivity() {
                     Thread {
                         val app = application as App
                         val calculateDao = app.db.calculateDao()
-                        val currentDate = Date()
                         calculateDao.insert(
                             Calculate(
                                 type = "imc",
-                                res = result,
-                                createdDate = currentDate
+                                res = result
                             )
                         )
 
