@@ -3,6 +3,7 @@ package com.example.fitnesstracker
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
@@ -64,6 +65,11 @@ class ImcActivity : AppCompatActivity() {
             val service = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             service.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
     }
 
     @StringRes
