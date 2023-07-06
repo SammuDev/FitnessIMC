@@ -3,6 +3,7 @@ package com.example.fitnesstracker
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,8 +46,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 2 -> {
-                    val intent = Intent(this@MainActivity, ListCalculateActivity::class.java)
-                    startActivity(intent)
+                    Log.i("funcionando", "Funcionando!")
                 }
             }
         }
