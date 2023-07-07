@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 2 -> {
-                    Log.i("funcionando", "Funcionando!")
+                    val intent = Intent(this@MainActivity, TmbActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }

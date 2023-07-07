@@ -13,7 +13,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fitnesstracker.model.Calculate
-import java.util.*
 
 class ImcActivity : AppCompatActivity() {
     private lateinit var weightEditInput: EditText
@@ -72,7 +71,10 @@ class ImcActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_search) openListActivity()
+        if (item.itemId == R.id.menu_search) {
+            finish()
+            openListActivity()
+        }
         return super.onOptionsItemSelected(item)
     }
 
