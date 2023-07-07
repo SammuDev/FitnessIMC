@@ -39,14 +39,15 @@
             style="@style/AutoTextViewForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <AutoCompleteTextView
                 android:id="@+id/auto_lifestyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button_sendImcCalculator"
+            android:id="@+id/button_tmbCalculator"
             style="@style/Button_Form"
             android:text="@string/buttonText_calculate" />
     </LinearLayout>

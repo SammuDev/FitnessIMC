@@ -23,8 +23,8 @@ class ImcActivity : AppCompatActivity() {
 
         weightEditInput = findViewById(R.id.inputEdit_weight)
         heightEditInput = findViewById(R.id.inputEdit_height)
-
         val buttonImcCalculator: Button = findViewById(R.id.button_sendImcCalculator)
+
         buttonImcCalculator.setOnClickListener {
             if (!validate()) {
                 Toast.makeText(this, R.string.toastDefeatValue, Toast.LENGTH_SHORT).show()
