@@ -1,11 +1,15 @@
 package com.example.fitnesstracker
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fitnesstracker.model.Calculate
 
 class TmbActivity : AppCompatActivity() {
     private lateinit var lifestyle: AutoCompleteTextView
@@ -41,6 +45,31 @@ class TmbActivity : AppCompatActivity() {
 
             val result = calculateTmb(weight, height, age)
             val response = tmbRequest(result)
+
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.tmb_response, response))
+                .setPositiveButton(android.R.string.ok) { _, _ -> }
+                .setNegativeButton(R.string.save) { _, _ ->
+                    Thread {
+                        val app = application as App
+                        val calculateDao = app.db.calculateDao()
+                        calculateDao.insert(
+                            Calculate(
+                                type = "tmb",
+                                res = response
+                            )
+                        )
+
+                        runOnUiThread {
+                            openListActivity()
+                        }
+                    }.start()
+                }
+                .create()
+                .show()
+
+            val service = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            service.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         }
     }
 
@@ -59,7 +88,7 @@ class TmbActivity : AppCompatActivity() {
 
     private fun openListActivity() {
         val intent = Intent(this@TmbActivity, ListCalculateActivity::class.java)
-        intent.putExtra("type", "imc")
+        intent.putExtra("type", "tmb")
         startActivity(intent)
     }
 
